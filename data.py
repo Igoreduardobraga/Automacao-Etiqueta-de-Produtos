@@ -20,7 +20,7 @@ ylprecoG = 305
 xlprecoKG = 879
 ylprecoKG = 305
 
-xlvalidade = 875
+xlvalidade = 881
 ylvalidade = 291
 
 # right
@@ -36,7 +36,7 @@ yrprecoG = 305
 xrprecoKG = 1093
 yrprecoKG = 305
 
-xrvalidade = 1087
+xrvalidade = 1093
 yrvalidade = 291
 
 for i in range(10):
@@ -66,7 +66,14 @@ for i in range(10):
     pyautogui.keyUp('ctrl')
     ylnome = 410
     ylcodigo = 424
-    ylpreco = 441
+    ylprecoG = 441
+    ylprecoKG = 441
+    ylvalidade = 425
+    yrnome = 411
+    yrcodigo = 424
+    yrprecoG = 441
+    yrprecoKG = 441
+    yrvalidade = 425
 
 
 # for linha in range(2):
