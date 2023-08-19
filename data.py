@@ -35,6 +35,7 @@ pyautogui.keyDown('alt')
 pyautogui.press(['tab'])
 pyautogui.keyUp('alt')
 
+
 def transformarData(oldData):
     if oldData == '':
         oldData = '0'
@@ -43,11 +44,14 @@ def transformarData(oldData):
     newData = futuro.strftime("%d-%m-%Y")
     return newData
 
-def transformarGrama(preco): 
+
+def transformarGrama(preco):
     return preco/10
+
 
 def formatPreco(preco):
     return "{:.2f}".format(preco)
+
 
 def reiniciarXY():
     global ylnome, ylcodigo, ylprecoG, yrnome, yrcodigo, yrprecoG
@@ -58,10 +62,12 @@ def reiniciarXY():
     yrcodigo = 290
     yrprecoG = 320
 
-with open('produtos.txt', 'r', encoding='UTF-8') as arquivo:
+
+with open('produtos_nomeResumido.txt', 'r', encoding='UTF-8') as arquivo:
     for linha in arquivo:
         codigo = linha.split(',')[0].replace('"', '').lstrip('0')
-        nome = re.sub(r'\b(A GRANEL|ABSOLUT|GRANEL)\b', '', linha.split(',')[1].replace('"', ''))
+        nome = re.sub(r'\b(A GRANEL|ABSOLUT|GRANEL)\b', '',
+                      linha.split(',')[1].replace('"', ''))
         oldData = linha.split(',')[2].replace('"', '')
         newData = transformarData(oldData)
         precoKG = linha.split(',')[3].replace('"', '').rstrip('/n')
@@ -78,11 +84,11 @@ it = 0
 
 for i in range(math.ceil(num_linhas_arquivo/14)):
     for j in range(7):
-        pyautogui.click(xlnome,ylnome)
+        pyautogui.click(xlnome, ylnome, duration=0.1)
         pyautogui.write(vetorNome[it])
-        pyautogui.click(xlcodigo,ylcodigo)
+        pyautogui.click(xlcodigo, ylcodigo, duration=0.1)
         pyautogui.write(vetorCodigo[it])
-        pyautogui.click(xlprecoG,ylprecoG)
+        pyautogui.click(xlprecoG, ylprecoG, duration=0.1)
         pyautogui.write(vetorPrecoG[it])
         for k in range(8):
             pyautogui.press('right')
@@ -92,14 +98,14 @@ for i in range(math.ceil(num_linhas_arquivo/14)):
         ylnome += 90
         ylcodigo += 90
         ylprecoG += 90
-        
+
         it += 1
         # Definindo valores para o próximo produto
-        pyautogui.click(xrnome,yrnome)
+        pyautogui.click(xrnome, yrnome, duration=0.1)
         pyautogui.write(vetorNome[it])
-        pyautogui.click(xrcodigo,yrcodigo)
+        pyautogui.click(xrcodigo, yrcodigo, duration=0.1)
         pyautogui.write(vetorCodigo[it])
-        pyautogui.click(xrprecoG,yrprecoG)
+        pyautogui.click(xrprecoG, yrprecoG, duration=0.1)
         pyautogui.write(vetorPrecoG[it])
         for k in range(8):
             pyautogui.press('right')
@@ -118,13 +124,13 @@ for linha in range(2):
 
     init = 326
     for linha in range(5):
-        pyautogui.click(727,init,duration=2)
+        pyautogui.click(727, init, duration=0.1)
         init += 150
         print(init)
 
     init = 326
     for linha in range(3):
-        pyautogui.click(727,init,duration=2)
+        pyautogui.click(727, init, duration=0.1)
         init += 150
         print(init)
 
