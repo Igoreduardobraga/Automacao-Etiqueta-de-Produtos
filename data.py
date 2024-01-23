@@ -2,6 +2,7 @@ import pyautogui
 from datetime import datetime, timedelta
 import re
 import math
+import pyperclip
 
 # left
 xlnome = 837
@@ -62,6 +63,12 @@ def reiniciarXY():
     yrcodigo = 290
     yrprecoG = 320
 
+    
+def _workaround_write(text):
+    pyperclip.copy(text)
+    pyautogui.hotkey('ctrl', 'v')
+    pyperclip.copy('')
+
 
 with open('produtos_nomeResumido.txt', 'r', encoding='UTF-8') as arquivo:
     for linha in arquivo:
@@ -70,7 +77,7 @@ with open('produtos_nomeResumido.txt', 'r', encoding='UTF-8') as arquivo:
                       linha.split(',')[1].replace('"', ''))
         oldData = linha.split(',')[2].replace('"', '')
         newData = transformarData(oldData)
-        precoKG = linha.split(',')[3].replace('"', '').rstrip('/n')
+        precoKG = linha.split(',')[3].replace('"', '').rstrip('\n')
         precoKG = float(precoKG)
         precoG = transformarGrama(precoKG)
         vetorCodigo.append(codigo)
@@ -85,16 +92,16 @@ it = 0
 for i in range(math.ceil(num_linhas_arquivo/14)):
     for j in range(7):
         pyautogui.click(xlnome, ylnome, duration=0.1)
-        pyautogui.write(vetorNome[it])
+        _workaround_write(vetorNome[it])
         pyautogui.click(xlcodigo, ylcodigo, duration=0.1)
-        pyautogui.write(vetorCodigo[it])
+        _workaround_write(vetorCodigo[it])
         pyautogui.click(xlprecoG, ylprecoG, duration=0.1)
-        pyautogui.write(vetorPrecoG[it])
+        _workaround_write(vetorPrecoG[it])
         for k in range(8):
             pyautogui.press('right')
-        pyautogui.write(vetorprecoKG[it])
+        _workaround_write(vetorprecoKG[it])
         pyautogui.press('up')
-        pyautogui.write(vetorData[it])
+        _workaround_write(vetorData[it])
         ylnome += 90
         ylcodigo += 90
         ylprecoG += 90
@@ -102,16 +109,16 @@ for i in range(math.ceil(num_linhas_arquivo/14)):
         it += 1
         # Definindo valores para o próximo produto
         pyautogui.click(xrnome, yrnome, duration=0.1)
-        pyautogui.write(vetorNome[it])
+        _workaround_write(vetorNome[it])
         pyautogui.click(xrcodigo, yrcodigo, duration=0.1)
-        pyautogui.write(vetorCodigo[it])
+        _workaround_write(vetorCodigo[it])
         pyautogui.click(xrprecoG, yrprecoG, duration=0.1)
-        pyautogui.write(vetorPrecoG[it])
+        _workaround_write(vetorPrecoG[it])
         for k in range(8):
             pyautogui.press('right')
-        pyautogui.write(vetorprecoKG[it])
+        _workaround_write(vetorprecoKG[it])
         pyautogui.press('up')
-        pyautogui.write(vetorData[it])
+        _workaround_write(vetorData[it])
         yrnome += 90
         yrcodigo += 90
         yrprecoG += 90
