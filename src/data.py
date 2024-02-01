@@ -70,7 +70,7 @@ def _workaround_write(text):
     pyperclip.copy('')
 
 
-with open('produtos_nomeResumido.txt', 'r', encoding='UTF-8') as arquivo:
+with open('../docs/produtos_nomeResumido.txt', 'r', encoding='UTF-8') as arquivo:
     for linha in arquivo:
         codigo = linha.split(',')[0].replace('"', '').lstrip('0')
         nome = re.sub(r'\b(A GRANEL|ABSOLUT|GRANEL)\b', '',
